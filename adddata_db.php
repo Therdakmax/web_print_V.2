@@ -2,7 +2,7 @@
 
 //print_r($_POST); //ตรวจสอบมี input อะไรบ้าง และส่งอะไรมาบ้าง 
 //ถ้ามีค่าส่งมาจากฟอร์ม
-if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
+if (isset($_POST['data_name'])) {
 	// sweet alert 
 	echo '
    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -13,9 +13,8 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 	include('server.php');
 	//ประกาศตัวแปรรับค่าจากฟอร์ม
 
-	$name_hotel = $_POST['name_hotel'];
-	$type_ = $_POST['type'];
-	$sql = "INSERT INTO hotel(name_hotel, type)VALUES ('$name_hotel', '$type_')";
+	$data_name = $_POST['data_name'];
+	$sql = "INSERT INTO data (data_name)VALUES ('$data_name')";
 	
 	if ($con->query($sql) === TRUE) {
 		echo '<script>
@@ -25,7 +24,7 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 			 text: "Register Success",
 			 type: "success"
 		 }, function() {
-			 window.location = "addhotel.php"; //หน้าที่ต้องการให้กระโดดไป
+			 window.location = "adddata.php"; //หน้าที่ต้องการให้กระโดดไป
 		 });
 	   }, 1000);
    </script>';
@@ -36,7 +35,7 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 			 title: "WebApp Error",
 			 type: "error"
 		 }, function() {
-			 window.location = "register.php"; //หน้าที่ต้องการให้กระโดดไป
+			 window.location = "index.php"; //หน้าที่ต้องการให้กระโดดไป
 		 });
 	   }, 1000);
    </script>';
@@ -48,7 +47,7 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 		 title: "try again",
 		 type: "try again"
 	 }, function() {
-		 window.location = "addhotel.php"; //หน้าที่ต้องการให้กระโดดไป
+		 window.location = "adddata.php"; //หน้าที่ต้องการให้กระโดดไป
 	 });
    }, 1000);
 </script>';

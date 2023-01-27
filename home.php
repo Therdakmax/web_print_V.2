@@ -1,4 +1,5 @@
-<?php if ($_SESSION['id'] != "") { ?>
+<?php  session_start();
+if ($_SESSION['id'] != "") { ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +30,9 @@
     <i class="fa fa-remove"></i>
   </a>
   <h4 class="w3-bar-item"><b>MENU</b></h4>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#" ><img src="/image/add.png" id="movemenu" width="30px"> &nbsp;Add User</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#"><img src="/image/printicon.png" id="movemenu2" width="30px"> &nbsp;Add Data</a>
-  <a class="w3-bar-item w3-button w3-hover-black" href="#"><img src="/image/3020274-200.png" id="movemenu3" width="30px"> &nbsp;Add Hotel</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="register.php" ><img src="/image/add.png" id="movemenu" width="30px"> &nbsp;Add User</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="adddata.php"><img src="/image/printicon.png" id="movemenu2" width="30px"> &nbsp;Add Data</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="addhotel.php"><img src="/image/3020274-200.png" id="movemenu3" width="30px"> &nbsp;Add Hotel</a>
   <a class="w3-bar-item w3-button w3-hover-black" href="#"><img src="/image/user.png" id="movemenu4" width="30px"> &nbsp;User Manager</a>
   <a class="w3-bar-item w3-button w3-hover-black w3-dropdown-click" href="#"><img src="/image/user.png" id="movemenu4" width="30px"> &nbsp;User Manager</a>
 

@@ -1,4 +1,5 @@
-<?php if ($_SESSION['id'] != "") { ?>
+<?php session_start();
+if ($_SESSION['id'] != "") { ?>
 <!DOCTYPE html>
 <html en>
 <head>
@@ -7,12 +8,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="Stylesheet" href="/css/add.css">
+        <link rel="stylesheet" href="/css/back.css">
+        <link rel="Stylesheet" href="/css/add.css">
+        <link rel="Stylesheet" href="/css/table.css">
     <title>Laundry Register </title>
 </head>
 
 <body>
-
+<div><a href="home.php"><img src="/image/back.png" class="btn_back" width="30px"></a>
     <form action="save_hotel_db.php" method="post">
         <div class="pinfo">Add Your Hotel Name</div>
         <div class="form-group">

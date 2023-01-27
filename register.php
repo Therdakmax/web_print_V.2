@@ -1,4 +1,6 @@
 
+<?php session_start(); 
+if ($_SESSION['id'] != "") { ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -9,6 +11,7 @@
     <title>Laundry Register </title>
   </head>
   <body>
+  <a href="home.php"><img src="/image/back.png" class="btn_back" width="30px"></a>
     <div class="container">
       <div class="row">
         <div class="col-md-3"></div>
@@ -43,5 +46,10 @@
           </div>
         </div>
         </script>
+        <?php }else{ 
+      echo "<script>";
+      echo "window.location.href='index.php';";
+      echo "</script>";
+} ?>
       </body>
     </html>  

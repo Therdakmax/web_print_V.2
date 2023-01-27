@@ -9,7 +9,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
 	//ไฟล์เชื่อมต่อฐานข้อมูล
-	require_once 'server.php';
+	require_once 'pdo_server.php';
 	//ประกาศตัวแปรรับค่าจากฟอร์ม
 
 	$fname = $_POST['fname'];
@@ -17,7 +17,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
 	$username = $_POST['username'];
 	$password = sha1($_POST['password']);
 	//check duplicat
-	$stmt = $conn->prepare("SELECT id FROM user WHERE username = :username");
+	$stmt = $conn->prepare("SELECT id FROM user2 WHERE username = :username");
 	$stmt->bindParam(':username', $username , PDO::PARAM_STR);
 	$stmt->execute(array(':username' => $username));
 	//ถ้า username ซ้ำ ให้เด้งกลับไปหน้าสมัครสมาชิก ปล.ข้อความใน sweetalert ปรับแต่งได้ตามความเหมาะสม
@@ -29,13 +29,13 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
 						   text: "Try again",
 						   type: "warning"
 					   }, function() {
-						window.location = "register.html"; //หน้าที่ต้องการให้กระโดดไป
+						window.location = "register.php"; //หน้าที่ต้องการให้กระโดดไป
 					   });
 					 }, 1000);
 			   </script>';
 	} else { //ถ้า username ไม่ซ้ำ เก็บข้อมูลลงตาราง
 		//sql insert
-		$stmt = $conn->prepare("INSERT INTO `user`(`id`, `fname`, `lname`, `username`, `password`) VALUES ('','$fname','$lname','$username','$password')");
+		$stmt = $conn->prepare("INSERT INTO `user2`(`id`, `fname`, `lname`, `username`, `password`) VALUES ('','$fname','$lname','$username','$password')");
 		$stmt->bindParam(':fname', $fname, PDO::PARAM_STR);
 		$stmt->bindParam(':lname', $lname, PDO::PARAM_STR);
 		$stmt->bindParam(':username', $username, PDO::PARAM_STR);
@@ -65,7 +65,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
 					 }, 1000);
 				 </script>';
 		}
-		$conn = null; //close connect db
+		$con = null; //close connect db
 	} //else chk dup
 } //isset 
 ?>
