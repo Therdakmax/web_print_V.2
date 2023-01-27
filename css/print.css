@@ -1,0 +1,52 @@
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
+.w3-sidebar {
+  z-index: 3;
+  width: 250px;
+  top: 43px;
+  bottom: 0;
+  height: inherit;
+}
+#print-content {
+    display: none;
+}
+#movetxt {
+    -webkit-animation: moving 2s;
+    animation: moving 2s ;
+}
+@keyframes moving {
+    0% {transform: translateX(-100px);}
+    50% {transform: translateX(200px);}
+    100% {transform: translateX(0px);}
+}
+#movemenu {
+    -webkit-animation: movemenu 3s;
+    animation: movemenu 3s;
+}
+@keyframes movemenu {
+    to {transform: translateY(0px);}
+    from {transform: translateY(300px);}
+}
+#movemenu2 {
+    -webkit-animation: movemenu2 2.5s;
+    animation: movemenu2 2.5s;
+}
+@keyframes movemenu2 {
+    to {transform: translateY(0px);}
+    from {transform: translateY(300px);}
+}
+#movemenu3 {
+    -webkit-animation: movemenu3 2s;
+    animation: movemenu3 2s;
+}
+@keyframes movemenu3 {
+    to {transform: translateY(0px);}
+    from {transform: translateY(300px);}
+}
+#movemenu4 {
+    -webkit-animation: movemenu3 1.5s;
+    animation: movemenu3 1.5s;
+}
+@keyframes movemenu4 {
+    to {transform: translateY(0px);}
+    from {transform: translateY(300px);}
+}

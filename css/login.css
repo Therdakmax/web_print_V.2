@@ -1,0 +1,17 @@
+body {
+    
+    background-color: rgb(255, 255, 255);
+}
+.box{
+    background-color: rgb(167, 201, 245);
+    
+    width: 850px;
+    height: 350px;
+}
+.text_black{
+    font-size: 25px;
+    color: black;
+}
+.buttom {
+    background-color: rgb(14, 91, 153);
+}
