@@ -2,7 +2,7 @@
 
 //print_r($_POST); //ตรวจสอบมี input อะไรบ้าง และส่งอะไรมาบ้าง 
 //ถ้ามีค่าส่งมาจากฟอร์ม
-if (isset($_POST['data_name'])) {
+if (isset($_POST['data_name']) && isset($_POST['data_name2'])) {
 	// sweet alert 
 	echo '
    <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
@@ -14,7 +14,8 @@ if (isset($_POST['data_name'])) {
 	//ประกาศตัวแปรรับค่าจากฟอร์ม
 
 	$data_name = $_POST['data_name'];
-	$sql = "INSERT INTO data (data_name)VALUES ('$data_name')";
+	$data_name2 = $_POST['data_name2'];
+	$sql = "INSERT INTO data (data_name , data_name2)VALUES ('$data_name', '$data_name2')";
 	
 	if ($con->query($sql) === TRUE) {
 		echo '<script>

@@ -9,7 +9,7 @@ if (isset($_POST['fname']) && isset($_POST['lname']) && isset($_POST['username']
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css">';
 
 	//ไฟล์เชื่อมต่อฐานข้อมูล
-	require_once 'pdo_server.php';
+	require_once 'server.php';
 	//ประกาศตัวแปรรับค่าจากฟอร์ม
 
 	$fname = $_POST['fname'];

@@ -50,3 +50,36 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     to {transform: translateY(0px);}
     from {transform: translateY(300px);}
 }
+.select-class {
+    width:150px;
+    padding:5px;
+    border-radius:5px;
+    font-size:14px;
+}
+.option-class {
+    background-color: #f2f2f2;
+    padding:5px;
+}
+#box{
+    width: 800px;
+    height: 370px;
+    display:none;
+    text-align: center; 
+    background-color: beige;
+}
+#preview{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+}
+#name_input {
+    position: absolute;
+    left: 80%;
+}
+#data {
+    position: absolute;
+    left: 40%;
+    transform: translateX(-50%);
+}
+

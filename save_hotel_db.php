@@ -15,7 +15,7 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 
 	$name_hotel = $_POST['name_hotel'];
 	$type_ = $_POST['type'];
-	$sql = "INSERT INTO hotel(name_hotel, type)VALUES ('$name_hotel', '$type_')";
+	$sql = "INSERT INTO hotel(name_hotel) VALUES ('{$name_hotel} - {$type_}')";
 	
 	if ($con->query($sql) === TRUE) {
 		echo '<script>

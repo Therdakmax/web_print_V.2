@@ -24,18 +24,46 @@ if ($_SESSION['id'] != "") { ?>
         <div><a href="home.php"><img src="/image/back.png" class="btn_back" width="30px"></a>
             <h1>Add Your Data</h1>
         </div>
-        <form action="adddata_db.php" method="post">
+        <form action="adddata_db.php" method="post" onsubmit="return handleFormSubmit();">
             <div class="form-group">
+                <label>Row 1</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><img src="/image/addiocn.jpg" width="30px"></span>
                         <input name="data_name" placeholder="INTEL Duvet cover King 6.5ft...." class="form-control"
-                            type="text" required minlength="3">
+                            type="text" required minlength="3" maxlength="50">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Row 2</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><img src="/image/addiocn.jpg" width="30px"></span>
+                        <input name="data_name2" placeholder="Black & Yellow...." class="form-control" type="text" required
+                            minlength="3" maxlength="50">
                     </div>
                 </div>
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="move_r">
+            <p> example </p>
+            <img src="/image/view_.png" width="300px">
+        </div>
+            <script>
+                function handleFormSubmit() {
+                    var input = document.getElementById("data_name").value;
+                    var input2 = document.getElementById("data_name").value;
+                    if (input.length > 50 || input2.length > 50) {
+                        alert("Can't input more than 50 characters!");
+                        return false;
+                    } else {
+                        //form submission code here
+                    }
+                }
+            </script>
+
 
 
         </form>
@@ -47,8 +75,8 @@ if ($_SESSION['id'] != "") { ?>
 } ?>
     <br>
     <br>
-        <h1>Details Item</h1>
-       <?php // Select all records from table
+    <h1>Details Item</h1>
+    <?php // Select all records from table
     $sql = "SELECT * FROM data";
     $result_ = $con->query($sql);
 
@@ -59,11 +87,11 @@ if ($_SESSION['id'] != "") { ?>
                 <th>data_name</th>
                 <th>created_at</th>
             </tr>";
-        while($row = $result_->fetch_assoc()) {
+        while ($row = $result_->fetch_assoc()) {
             echo "<tr>
-                <td>". $row["id"] ."</td>
-                <td>". $row["data_name"] ."</td>
-                <td>". $row["created_at"] ."</td>
+                <td>" . $row["id"] . "</td>
+                <td>" . $row["data_name"] . "</td>
+                <td>" . $row["created_at"] . "</td>
             </tr>";
         }
         echo "</table>";
@@ -73,8 +101,8 @@ if ($_SESSION['id'] != "") { ?>
 
 
     $con->close();
-?>
-</div>
+    ?>
+    </div>
 </body>
 
 </html>
