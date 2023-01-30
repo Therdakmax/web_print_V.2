@@ -37,9 +37,11 @@ if ($_SESSION['id'] != "") { ?>
       <a class="w3-bar-item w3-button w3-hover-black" href="register.php"><img src="/image/add.png" id="movemenu"
           width="30px"> &nbsp;Add User</a>
       <a class="w3-bar-item w3-button w3-hover-black" href="adddata.php"><img src="/image/printicon.png" id="movemenu2"
-          width="30px"> &nbsp;Add Data</a>
+          width="30px"> &nbsp;Add Type & Color</a>
       <a class="w3-bar-item w3-button w3-hover-black" href="addhotel.php"><img src="/image/3020274-200.png" id="movemenu3"
           width="30px"> &nbsp;Add Hotel</a>
+      <a class="w3-bar-item w3-button w3-hover-black" href="logout.php"><img src="/image/logout.png" id="movemenu3"
+          width="30px"> &nbsp;Logout</a>
 
     </nav>
 
@@ -55,55 +57,77 @@ if ($_SESSION['id'] != "") { ?>
           <h1 class="w3-text-teal">PRINT</h1>
 
           <body>
-          <form>
-  <label for="name_input">Hotel:</label>
-  <select id="name" name="name_input" class="select-class" onchange="updatePreview()">
-    <option value="">Select Hotel</option>
-    <?php
-    include_once('server.php');
-    $sql_set = "SELECT id, name_hotel FROM hotel";
-    $result_set = $con->query($sql_set);
-    while ($row = $result_set->fetch_assoc()) {
-      echo "<option value='" . $row['name_hotel'] . "' class='option-class'>" . $row['name_hotel'] . "</option>";
-    }
-    $con = null;
-    ?>
-  </select>
+            <form>
+              <label for="name_input">Hotel:</label>
+              <select id="name" name="name_input" class="select-class" onchange="updatePreview()">
+                <option value="">Select data (null)</option>
+                <?php
+                include_once('server.php');
+                $sql_set = "SELECT id, name_hotel FROM hotel";
+                $result_set = $con->query($sql_set);
+                while ($row = $result_set->fetch_assoc()) {
+                  echo "<option value='" . $row['name_hotel'] . "' class='option-class'>" . $row['name_hotel'] . "</option>";
+                }
+                $con = null;
+                ?>
+              </select>
 
-  <!-- เว้น Data ให้ชิดกับ option -->
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  
-  
-  
-  <label for="name_input">Data:</label>
-  <select id="data" name="data" class="select-class" onchange="updatePreview()">
-    <option value="">Select data</option>
-    <?php
-    include('server.php');
-    $sql_data = "SELECT id, data_name FROM data";
-    $result_data = $con->query($sql_data);
-    while ($row = $result_data->fetch_assoc()) {
-      echo "<option value='" . $row['data_name'] . "' class='option-class'>" . $row['data_name'] . "</option>";
-    }
-    $con = null;
-    ?>
-  </select>
-  <div id="preview"></div>
-  <div id="box" style="width: 500px; height: 250px; display:none;"></div>
-  <div>
-    <input type="button" value="Print PDF" onclick="createPDF()">
-  </div>
-</form>
+              <!-- เว้น Data ให้ชิดกับ option -->
 
-<script>
-    function updatePreview() {
-        var hotel = document.getElementById("name").value;
-        var data = document.getElementById("data").value;
 
-        document.getElementById("preview").innerHTML =  hotel + "<br>" +  data;
-        document.getElementById("box").style.display = "block";
-    }
-</script>
+
+              <label for="name_input">type:</label>
+              <select id="data" name="data" class="select-class" onchange="updatePreview()">
+                <option value="">Select data (null)</option>
+                <?php
+                include('server.php');
+                $sql_data = "SELECT id, data_name FROM data";
+                $result_data = $con->query($sql_data);
+                while ($row = $result_data->fetch_assoc()) {
+                  echo "<option value='" . $row['data_name'] . "' class='option-class'>" . $row['data_name'] . "</option>";
+                }
+                $con = null;
+                ?>
+              </select>
+              <label for="name_input">:</label>
+              <select id="data2" name="data2" class="select-class" onchange="updatePreview()">
+                <option value="">Select data (null)</option>
+                <?php
+                include('server.php');
+                $sql_data = "SELECT id, color FROM color_data";
+                $result_data = $con->query($sql_data);
+                while ($row = $result_data->fetch_assoc()) {
+                  echo "<option value='" . $row['color'] . "' class='option-class'>" . $row['color'] . "</option>";
+                }
+                $con = null;
+                ?>
+
+              </select>
+              <div onchange="updatePreview()" class="select-class">
+                <label for="number" style="display: block; font-weight: bold; margin-bottom: 8px;">Quantity</label>
+                <input type="number" min="1" max="100" step="1" value="1" name="number" id="number"
+                  style="width: 70px; padding: 6px; font-size: 14px; border: 1px solid #ccc; border-radius: 4px;">
+              </div>
+
+
+              <div id="preview"></div>
+              <div id="box" style="width: 500px; height: 250px; display:none;"></div>
+              <div>
+                <input type="button" value="Print PDF" onclick="createPDF()">
+              </div>
+            </form>
+
+            <script>
+              function updatePreview() {
+                var hotel = document.getElementById("name").value;
+                var data = document.getElementById("data").value;
+                var data2 = document.getElementById("data2").value;
+                var number = document.getElementById("number").value;
+
+                document.getElementById("preview").innerHTML = hotel + "<br>" + "<br>" + "<br>" + data + "<br>" + data2 + "<br>" + "X" + number;
+                document.getElementById("box").style.display = "block";
+              }
+            </script>
 
 
 
@@ -117,18 +141,6 @@ if ($_SESSION['id'] != "") { ?>
           <p class="w3-border w3-padding-large w3-padding-64 w3-center">250x150</p>
         </div>
       </div>
-
-
-      <footer id="myFooter">
-        <div class="w3-container w3-theme-l2 w3-padding-32">
-          <h4>Footer</h4>
-        </div>
-
-        <div class="w3-container w3-theme-l1">
-          <p>Powered by <a href="" target="_blank">MaxDev</a></p>
-        </div>
-      </footer>
-
       <!-- END MAIN -->
     </div>
 
@@ -161,25 +173,41 @@ if ($_SESSION['id'] != "") { ?>
       function createPDF() {
         var name = document.getElementById("name").value;
         var data = document.getElementById("data").value;
-        if (!name) {
-          alert("Please select the hotel!");
-          return;
-        } if (!data) {
-          alert("Please select the Data!");
-          return;
-        }
+        var data2 = document.getElementById("data2").value;
+        var number = document.getElementById("number").value;
 
-        // Create a new PDF
-        var pdf = new jsPDF('l', 'mm', [110, 300]);
+        // Include the Thai font file
+        var font = new FontFace('MN_Mocktail', 'url(/fonts/MN_Mocktail.ttf)');
 
+        // Load the font
+        font.load().then(function (loadedFont) {
+          // Use the font
+          pdf.setFont(loadedFont.family);
+
+          // Add Thai text to the PDF
+          pdf.setFontType("normal");
+          pdf.setFontSize(5.5);
+          pdf.text(2.5, 5, name);
+        });
+        var pdf = new jsPDF('l', 'mm', [100, 50], true);
+
+        // DATA 1
         pdf.setFont("helvetica");
         pdf.setFontType("normal");
-        pdf.setFontSize(20);
-        pdf.text(10, 10, name);
+        pdf.setFontSize(5.5);
+        pdf.text(2.5, 5, name);
         pdf.setFont("helvetica");
         pdf.setFontType("normal");
-        pdf.setFontSize(10);
-        pdf.text(10, 25, data);
+        pdf.setFontSize(3.5);
+        pdf.text(12, 9, data);
+
+
+        // DATA 2
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+        pdf.setFontSize(3);
+        pdf.text(12, 10.5, data2);
+
 
         var currentDate = new Date();
 
@@ -198,12 +226,25 @@ if ($_SESSION['id'] != "") { ?>
         pdf.setFont("helvetica");
         pdf.setFontType("normal");
         pdf.setFontSize(2);
-        pdf.text(10, 15, thaiDate + '/' + thaiMonth + '/' + thaiYear + ' ' + thaiHour + ':' + thaiMinute + ':' + thaiSecond);
+        pdf.text(3, 6.5, thaiDate + '/' + thaiMonth + '/' + thaiYear + ' ' + thaiHour + ':' + thaiMinute + ':' + thaiSecond);
 
-        //pdf.text(10,27, thaiTime);
 
+        //linens
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+        pdf.setFontSize(2);
+        pdf.text(12, 6.5, "Linens");
+        //pdf.text  number
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+        pdf.setFontSize(2);
+        pdf.text(12, 11.5, "X " + number);
 
         //pdf.text(15, 15, startTime);
+        pdf.setFont("helvetica");
+        pdf.setFontType("normal");
+        pdf.setFontSize(2);
+        pdf.text(3, 15, "By Laundry House");
 
 
         // Print the PDF

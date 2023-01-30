@@ -24,8 +24,8 @@ if(isset($_POST['username'])){
 			echo '<script>
 			setTimeout(function() {
 			 swal({
-				 title: "Success",
-				 text: "Register Success",
+				 title: "Login Success",
+				 text: "Login Success",
 				 type: "success"
 			 }, function() {
 				 window.location = "home.php"; //หน้าที่ต้องการให้กระโดดไป

@@ -26,7 +26,7 @@ if ($_SESSION['id'] != "") { ?>
         </div>
         <form action="adddata_db.php" method="post" onsubmit="return handleFormSubmit();">
             <div class="form-group">
-                <label>Row 1</label>
+                <label>Type of Fabric</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><img src="/image/addiocn.jpg" width="30px"></span>
@@ -35,18 +35,22 @@ if ($_SESSION['id'] != "") { ?>
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label>Row 2</label>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <form action="color_db.php" method="post">
+                <div class="form-group">
+                <label>Color</label>
                 <div class="col-md-4 inputGroupContainer">
                     <div class="input-group">
                         <span class="input-group-addon"><img src="/image/addiocn.jpg" width="30px"></span>
-                        <input name="data_name2" placeholder="Black & Yellow...." class="form-control" type="text" required
+                        <input name="color" placeholder="Black" class="form-control" type="text" required
                             minlength="3" maxlength="50">
                     </div>
                 </div>
             </div>
-
             <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
             <div class="move_r">
             <p> example </p>
             <img src="/image/view_.png" width="300px">
@@ -66,7 +70,6 @@ if ($_SESSION['id'] != "") { ?>
 
 
 
-        </form>
         </script>
     <?php } else {
     echo "<script>";
@@ -83,15 +86,41 @@ if ($_SESSION['id'] != "") { ?>
     if ($result_->num_rows > 0) {
         echo "<table>";
         echo "<tr>
-                <th>id</th>
-                <th>data_name</th>
-                <th>created_at</th>
+                <th>#</th>
+                <th>data</th>
+                <th>Time</th>
             </tr>";
         while ($row = $result_->fetch_assoc()) {
             echo "<tr>
                 <td>" . $row["id"] . "</td>
                 <td>" . $row["data_name"] . "</td>
-                <td>" . $row["created_at"] . "</td>
+                <td>" . $row["time_add"] . "</td>
+            </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    $conn = null;
+    ?>
+     <br>
+    <h1>Details Color</h1>
+    <?php // Select all records from table
+    $sql_color = "SELECT * FROM color_data";
+    $result_color = $con->query($sql_color);
+
+    if ($result_color->num_rows > 0) {
+        echo "<table>";
+        echo "<tr>
+                <th>#</th>
+                <th>Color</th>
+                <th>Time</th>
+            </tr>";
+        while ($row_color = $result_color->fetch_assoc()) {
+            echo "<tr>
+                <td>" . $row_color["id"] . "</td>
+                <td>" . $row_color["color"] . "</td>
+                <td>" . $row_color["time_add"] . "</td>
             </tr>";
         }
         echo "</table>";

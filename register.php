@@ -1,6 +1,4 @@
 
-<?php session_start(); 
-if ($_SESSION['id'] != "") { ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -45,11 +43,4 @@ if ($_SESSION['id'] != "") { ?>
             </div>
           </div>
         </div>
-        </script>
-        <?php }else{ 
-      echo "<script>";
-      echo "window.location.href='index.php';";
-      echo "</script>";
-} ?>
-      </body>
     </html>  

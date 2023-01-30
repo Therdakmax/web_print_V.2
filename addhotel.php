@@ -53,6 +53,34 @@ if ($_SESSION['id'] != "") { ?>
       echo "window.location.href='index.php';";
       echo "</script>";
 } ?>
+ <br>
+ <br>
+<h1>Details Item</h1>
+    <?php // Select all records from table
+    include('server.php');
+    $sql = "SELECT * FROM hotel";
+    $result_ = $con->query($sql);
+
+    if ($result_->num_rows > 0) {
+        echo "<table>";
+        echo "<tr>
+                <th>#</th>
+                <th>Name Customer</th>
+                <th>Time</th>
+            </tr>";
+        while ($row = $result_->fetch_assoc()) {
+            echo "<tr>
+                <td>" . $row["id"] . "</td>
+                <td>" . $row["name_hotel"] . "</td>
+                <td>" . $row["time_add"] . "</td>
+            </tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "0 results";
+    }
+    $conn = null;
+    ?>
 </body>
 
 </html>

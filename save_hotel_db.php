@@ -36,7 +36,7 @@ if (isset($_POST['name_hotel']) && isset($_POST['type'])) {
 			 title: "WebApp Error",
 			 type: "error"
 		 }, function() {
-			 window.location = "register.php"; //หน้าที่ต้องการให้กระโดดไป
+			 window.location = "index.php"; //หน้าที่ต้องการให้กระโดดไป
 		 });
 	   }, 1000);
    </script>';
